@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIPABC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+    <img src="images/3-01.png" class="img">
+    <img src="#" class="cun-img" id="cun-img">
+
+    <div class="country-text-div">
+        <span class="country-text" id="country-text"></span>
+    </div>
+    <div class="div">
+        <img src="images/3-04.jpg" class="img">
+
+        <div class="btn_div" onclick="_submit()"></div>
+    </div>
+</div>
+<script src="js/team.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        var reg = new RegExp("(^|&)country=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            var country = decodeURI(r[2]);
+            $('#cun-img').attr('src', 'images/' + ETEAM[country].littleimg);
+            $('#country-text').text(ETEAM[country].cname + ' ' + ETEAM[country].ename);
+        }
+    });
+
+    function _submit() {
+        window.location.href = 'older.html';
+    }
+</script>
+</body>
+</html>

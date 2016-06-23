@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIPABC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-box {
+            border: 0px solid #fff;
+            height: 32%;
+            width: 76%;
+            position: absolute;
+            top: 57%;
+            left: 18%;
+        }
+
+        .table-colar {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-collapse: collapse;
+            color: #FFFFFF;
+        }
+
+        .button-box {
+            position: absolute;
+            height: 10%;
+            width: 20%;
+            top: 78%;
+            left: 40%;
+        }
+
+        span {
+            border: 1px solid #fff;
+            display: inline;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+
+        .radio-box {
+            border: 1px solid #fff;
+            text-align: center;
+            display: inline-block;
+        }
+
+        input {
+            background-color: transparent;
+            border-left-width: 0 ;
+            border-right-width: 0 ;
+            border-top-width: 0 ;
+            outline: none;
+            border-radius: 0;
+            border-bottom-color: #FFFFFF;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="head-div">
+        <img src="images/ec_02_01.png" class="image">
+
+        <div class="text-box">
+            <form>
+                <table class="table-colar">
+                    <tbody>
+                    <tr>
+                        <td class="td-font">姓名：</td>
+                        <td style="width: 80%"><input id="username" onblur="checkName()" class="inner-input" type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td-font">性别：</td>
+                        <td style="width: %">
+                            <label style="width: 30%" class="radio-box" id="labman" onclick="checkSex()" for="radio1">
+                                <input style="display: none;" id="radio1" type="radio" name="sex" value="man"
+                                       checked="checked"/>&nbsp;男&nbsp;&nbsp;&nbsp;
+                            </label>
+
+
+                            <label style="width: 30%" class="radio-box" id="labwoman" onclick="checkSex()" for="radio2">
+                                <input style="display: none;" id="radio2" type="radio" name="sex" value="women"/>&nbsp;女&nbsp;&nbsp;&nbsp;
+                            </label>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-font">年龄：</td>
+                        <td style="width: 80%"><input id="age" onblur="checkAge()" class="inner-input" type="text"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td-font">手机：</td>
+                        <td style="width: 80%"><input class="inner-input" type="text" id="phone" onblur="checkPhone()"/></td>
+                    </tr>
+                    <tr>
+                        <td class="td-font">邮箱：</td>
+                        <td style="width: 80%"><input class="inner-input" type="text" id="mail" onblur="checkMail()"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <div class="button-box" onclick="next()"></div>
+
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script type="application/javascript">
+
+    function showToast(msg, duration) {
+        var mm = document.getElementById('toastDiv');
+        if (mm) {
+            document.body.removeChild(mm);
+        }
+        duration = isNaN(duration) ? 3000 : duration;
+        var m = document.createElement('div');
+        m.innerHTML = msg;
+        m.setAttribute('id', 'toastDiv');
+        m.setAttribute('class', 'toastDiv');
+        document.body.appendChild(m);
+        setTimeout(function () {
+            var d = 0.5;
+            m.style.webkitTransition = '-webkit-transform ' + d
+                    + 's ease-in, opacity ' + d + 's ease-in';
+            m.style.opacity = '0';
+            setTimeout(function () {
+                document.body.removeChild(m)
+            }, d * 1000);
+        }, duration);
+    }
+
+    function checkName() {
+        var username = document.getElementById('username').value;
+        if (!username || username == '') {
+            showToast("姓名不能为空");
+            return false;
+        }
+        return true;
+    }
+
+    function checkAge() {
+        var age = document.getElementById('age').value;
+        if (!age || age == '') {
+            showToast("年龄不能为空");
+            return false;
+        }
+        var telReg = /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
+        if (!telReg.test(age)) {
+            showToast("您输入的年龄有误");
+            return false;
+        }
+        return true;
+    }
+
+    function checkPhone() {
+        var phone = document.getElementById('phone').value;
+        if (!phone || phone == '') {
+            showToast("手机号不能为空");
+            return false;
+        }
+        var telReg = /^(?:13\d|14\d|15\d|17\d|18\d)\d{5}(\d{3}|\*{3})$/;
+        if (!telReg.test(phone)) {
+            showToast("您输入的电话有误,请重新核对后再输入!");
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkMail() {
+        var mail = document.getElementById('mail').value;
+
+        if (!mail) {
+            showToast("邮箱不能为空");
+            return false;
+        }
+
+        var emailReg = /^([a-zA-Z-z0-9_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/;
+        if (!emailReg.test(mail)) {
+            showToast("您输入的邮箱有误,请重新核对后再输入!");
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkSex() {
+        var val = $('input:radio[name="sex"]:checked').val();
+        if (val == 'man') {
+            $("#labman").css({
+                "background-color": "#fff",
+                "color": "red"
+            });
+            $("#labwoman").css({
+                "background-color": "transparent",
+                "color": "white"
+            });
+
+        } else {
+            $("#labwoman").css({
+                "background-color": "#fff",
+                "color": "red"
+            });
+            $("#labman").css({
+                "background-color": "transparent",
+                "color": "white"
+            });
+        }
+
+    }
+
+    function next() {
+        if (checkName() && checkAge() && checkPhone() && checkMail()) {
+            window.location.href = 'result.html';
+        }
+    }
+    $(document).ready(function () {
+        checkSex();
+
+    });
+
+</script>
+</body>
+</html>

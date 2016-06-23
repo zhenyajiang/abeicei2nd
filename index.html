@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIPABC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/idangerous.swiper.css">
+    <link rel="stylesheet" href="css/jquery.fullPage.css">
+    <style>
+        body {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-box {
+            border: 10px solid #fff;
+            height: 63%;
+            width: 78%;
+            position: absolute;
+            top: 17%;
+            left: 8%;
+        }
+
+        .touch-box {
+            width: 60%;
+            height: 14%;
+            position: absolute;
+            top: 85%;
+            left: 20%;
+        }
+
+        .mini_image {
+            width: 38%;
+            height: 25%;
+            position: absolute;
+            margin-left: 32%;
+            margin-top: -20%;
+        }
+
+        .mini_image2 {
+            width: 9%;
+            height: 5%;
+            position: absolute;
+            left: 85%;
+            top: 4%;
+        }
+
+        .ec_image {
+            margin-top: 15%;
+            margin-left: 5%;
+        }
+
+        .backgroundSet {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .logoSet {
+            position: absolute;
+            height: 15%;
+            width: 58%;
+            margin-left: 0;
+            top: 0;
+        }
+
+        .p-title {
+            width: 37%;
+            margin-left: 9%;
+            position: absolute;
+
+            color: white;
+        }
+
+        .inner-div1 {
+            position: absolute;
+
+            width: 80%;
+            /*margin-left: 9%;*/
+            border: solid;
+            border-color: white;
+            /*color: white;*/
+            /*font-size: 75px;*/
+        }
+
+        .okButton {
+            position: absolute;
+            height: 11%;
+            width: 17%;
+        }
+
+        .text-context {
+            position: absolute;
+            width: 90%;
+            color: white;
+            line-height: 150%;
+        }
+    </style>
+</head>
+<body>
+<div id="fullPage">
+    <div class="section">
+        <div class="content">
+            <div class="head-div">
+                <img src="images/ec_01_01.png" class="image">
+                <img src="images/ec_01_04.png" onclick="ask()" class="mini_image2" id="mini-image2">
+
+                <div class="text-box" id="touch">
+                    <img src="images/ec_01_03.png" class="mini_image">
+                    <img src="images/ec_01_02.png" class="image ec_image" style="width:90%;">
+                </div>
+
+                <div id="version" class="touch-box">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="content">
+            <div class="headImg">
+                <img src="images/2-01.jpg" class="img">
+
+                <div class="ques-div" onclick="ask()"></div>
+            </div>
+            <div class="countries" id="countries">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" id="swiper-wrapper">
+                    </div>
+                </div>
+            </div>
+            <div class="div">
+                <img src="images/3-07.png" class="img">
+
+                <div class="ok-btn" onclick="_submit()"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="background" class="backgroundSet">
+    <!--<div id="logo" class="logoSet">-->
+    <img class="logoSet" src="images/logo.png">
+    <!--</div>-->
+    <p class="p-title">活动详情</p>
+
+    <div class="inner-div1">
+        <p class="text-context">
+            活动主题:携好友猜冠军,火热玩转欧洲杯<br>
+            活动截止:7月10日<br>
+            参与方式:选择自己心中的冠军队伍,分享选择在朋友的帮助下获得额外的选择机会<br>
+            <br>
+            活动奖励:<br>
+            <br>
+            老会员<br>
+            1.猜对冠军即有机会抽奖获得价值3000元的超值大礼(京东购物卡/韩国人气演唱会大礼包)<br>
+            <br>
+            2.每推荐一名新会员成功加入我们即可选择价值1500元的四重好礼(京东购物卡/韩国演唱会现场门票/苹果系列产品/课程兑换)<br>
+            <br>
+            新会员<br>
+            留下名单后即可参与猜冠军活动,猜对即有机会抽奖获得价值3000元超值大礼(京东购物卡/韩国超人气演唱会大礼包)<br>
+        </p>
+    </div>
+    <button class="okButton" onclick="ok()">
+        <img src="images/ok.png" class="image" id="okButton">
+    </button>
+</div>
+<script src="js/team.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.slimscroll.min.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script src="js/idangerous.swiper.min.js"></script>
+<script type="application/javascript">
+    var mySwiper;
+    $(function () {
+        $('#fullPage').fullpage({
+            verticalCentered:false,
+            loopHorizontal: false,
+            controlArrows: false,
+            keyboardScrolling: false,
+            scrollOverflow: false,
+            afterLoad: function (anchorLink, index) {
+                if (index == 2) {
+                    $.fn.fullpage.setAllowScrolling(false, 'up');
+                }
+            }
+        });
+
+        $(CHOOSE_TEAM).each(function (index, item) {
+            $('#swiper-wrapper').append('<div class=\"swiper-slide\"><img src=\"images/' + ETEAM[item].littleimg + '\" cname=\"' + ETEAM[item].ename + '\" class=\"imgSwiper\"><p class=\"title\">' + ETEAM[item].cname + '</p></div>');
+            mySwiper = new Swiper('.swiper-container', {
+                paginationClickable: true,
+                centeredSlides: true,
+                slidesPerView: 3,
+                watchActiveIndex: true
+            });
+        })
+    });
+
+
+    function ask() {
+        document.getElementById('background').style.display = 'block';
+    }
+    function ok() {
+        document.getElementById('background').style.display = 'none';
+    }
+
+    function _submit() {
+        var teamName = $('#swiper-wrapper').find('div[class=\"swiper-slide swiper-slide-visible swiper-slide-active\"]').find('img').eq(0).attr('cname');
+        window.location.href = 'choosed.html?country=' + teamName;
+    }
+
+</script>
+</body>
+</html>

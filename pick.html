@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIPABC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/idangerous.swiper.css" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+    <div class="headImg">
+        <img src="images/2-01.jpg" class="img">
+
+        <div class="ques-div" onclick="ques()"></div>
+    </div>
+    <div class="countries" id="countries">
+        <!--<div class="prev">-->
+        <!--<img src="images/prev.png" class="little">-->
+        <!--</div>-->
+        <!--<div class="next">-->
+        <!--<img src="images/next.png" class="little">-->
+        <!--</div>-->
+        <!--<div class="bd">-->
+        <!--<div>-->
+        <!--<div class="img-wapper">-->
+        <!--<img src="images/Ireland.png" class="img3">-->
+        <!--<img src="images/Czech.png" class="img3">-->
+        <!--<img src="images/spain.png" class="img3">-->
+        <!--<p class="coun-name">爱尔兰</p><p class="coun-name">捷克</p><p class="coun-name">西班牙</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div>-->
+        <!--<div class="img-wapper">-->
+        <!--<img src="images/Czech.png" class="img3">-->
+        <!--<img src="images/Ireland.png" class="img3">-->
+        <!--<img src="images/spain.png" class="img3">-->
+        <!--<p class="coun-name">捷克</p><p class="coun-name">爱尔兰</p><p class="coun-name">西班牙</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="images/Czech.png">
+                    <p class="title">捷克</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/Ireland.png">
+                    <p class="title">爱尔兰</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/spain.png">
+                    <p class="title">西班牙</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/Ireland.png">
+                    <p class="title">爱尔兰</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/spain.png">
+                    <p class="title">西班牙</p>
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/Czech.png">
+                    <p class="title">捷克</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div">
+        <img src="images/3-07.png" class="img">
+
+        <div class="ok-btn" onclick="_submit()"></div>
+    </div>
+</div>
+<div id="background" class="backgroundSet">
+    <!--<div id="logo" class="logoSet">-->
+    <img class="logoSet" src="images/logo.png">
+    <!--</div>-->
+    <p class="p-title">活动详情</p>
+    <div class="inner-div1">
+        <p class="text-context">
+            活动主题:携好友猜冠军,火热玩转欧洲杯<br>
+            活动截止:7月10日<br>
+            参与方式:选择自己心中的冠军队伍,分享选择在朋友的帮助下获得额外的选择机会<br>
+            <br>
+            活动奖励:<br>
+            <br>
+            老会员<br>
+            1.猜对冠军即有机会抽奖获得价值3000元的超值大礼(京东购物卡/韩国人气演唱会大礼包)<br>
+            <br>
+            2.每推荐一名新会员成功加入我们即可选择价值1500元的四重好礼(京东购物卡/韩国演唱会现场门票/苹果系列产品/课程兑换)<br>
+            <br>
+            新会员<br>
+            留下名单后即可参与猜冠军活动,猜对即有机会抽奖获得价值3000元超值大礼(京东购物卡/韩国超人气演唱会大礼包)<br>
+        </p>
+    </div>
+    <button class="okButton" onclick="ok()">
+        <img src="images/ok.png" class="image">
+    </button>
+</div>
+<script src="js/jquery.min.js"></script>
+<!--<script src="js/TouchSlide.js"></script>-->
+<script src="js/idangerous.swiper.min.js"></script>
+<script type="application/javascript">
+    //    TouchSlide({slideCell: "#countries"});
+    var mySwiper = new Swiper('.swiper-container', {
+        paginationClickable: true,
+        centeredSlides: true,
+        slidesPerView: 3,
+        watchActiveIndex: true
+    })
+    var exchange = function (a, b) {
+        var n = a.next(), p = b.prev();
+        b.insertBefore(n);
+        a.insertAfter(p);
+    };
+
+    function ques(){
+        document.getElementById('background').style.display = 'block';
+    }
+    function ok(){
+        document.getElementById('background').style.display = 'none';
+    }
+
+    function _submit() {
+        window.location.href = 'choosed.html';
+    }
+
+    $('.img3').click(function () {
+        var index = $(this).index();
+        if (1 != $(this).index()) {
+            var center = $(this).parent().find('img[class=\'img3\']').eq(1);
+            if (index > 1) {
+                exchange($(this), center);
+            }
+            else {
+                exchange(center, $(this));
+            }
+            var centerText = $(this).parent().find('p').eq(1).text();
+            var thisText = $(this).parent().find('p').eq(index).text();
+            $(this).parent().find('p').eq(1).text(thisText);
+            $(this).parent().find('p').eq(index).text(centerText);
+        }
+    })
+</script>
+</body>
+</html>

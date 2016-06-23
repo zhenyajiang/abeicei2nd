@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIPABC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-box {
+            border: 0px solid #fff;
+            height: 32%;
+            width: 76%;
+            position: absolute;
+            top: 60%;
+            left: 17%;
+        }
+
+        .table-colar {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-collapse: collapse;
+            color: #FFFFFF;
+        }
+
+        .button-box {
+            position: absolute;
+            height: 10%;
+            width: 20%;
+            top: 78%;
+            left: 40%;
+        }
+
+        span {
+            border: 1px solid #fff;
+            display: inline;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+
+        input {
+            background-color: transparent;
+            border-left-width: 0;
+            border-right-width: 0;
+            border-top-width: 0;
+            outline: none;
+            border-radius: 0;
+            border-bottom-color: #FFFFFF;
+        }
+
+        tr {
+            margin: 5% 0;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="head-div">
+        <img src="images/ec_03_01.png" class="image">
+
+        <div class="text-box">
+            <form>
+                <table class="table-colar">
+                    <tbody>
+                    <tr>
+                        <td class="td-font">帐号：</td>
+                        <td style="width: 80%"><input id="acct" onblur="checkMail()" class="inner-input" type="text"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-font">密码：</td>
+                        <td style="width: 80%"><input id="pwd" onblur="checkPwd()" class="inner-input" style=" "
+                                                      type="password"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <div class="button-box" onclick="next()"></div>
+
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script type="application/javascript">
+
+    function showToast(msg, duration) {
+        duration = isNaN(duration) ? 3000 : duration;
+        var m = document.createElement('div');
+        m.innerHTML = msg;
+        m.setAttribute('class', 'toastDiv');
+        document.body.appendChild(m);
+        setTimeout(function () {
+            var d = 0.5;
+            m.style.webkitTransition = '-webkit-transform ' + d
+                    + 's ease-in, opacity ' + d + 's ease-in';
+            m.style.opacity = '0';
+            setTimeout(function () {
+                document.body.removeChild(m)
+            }, d * 1000);
+        }, duration);
+    }
+
+    function checkPwd() {
+        var pwd = document.getElementById('pwd').value;
+
+        if (!pwd) {
+            showToast("密码不能为空");
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkMail() {
+        var acct = document.getElementById('acct').value;
+
+        if (!acct) {
+            showToast("账号不能为空");
+            return false;
+        }
+
+        var emailReg = /^([a-zA-Z-z0-9_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/;
+        if (!emailReg.test(acct)) {
+            showToast("您输入的邮箱有误,请重新核对后再输入!");
+            return false;
+        }
+
+        return true;
+    }
+
+    function next() {
+        if (checkMail() && checkPwd()) {
+            window.location.href = 'result.html';
+        }
+    }
+
+</script>
+</body>
+</html>

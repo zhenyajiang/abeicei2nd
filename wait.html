@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIPABC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="content">
+    <div>
+        <img src="images/Spain-b.png" class="img">
+        <img src="images/question.png" class="question" onclick="_question()">
+    </div>
+
+    <div class="info">
+        <span class="info-title">西班牙 Spain</span>
+
+        <!--<div class="info-content">-->
+            <!--<div class="info-div">-->
+                <!--<p>主帅：博斯克</p>-->
+
+                <!--<p>成立时间：1913年</p>-->
+
+                <!--<p>上届成绩：冠军</p>-->
+
+                <!--<p>秋衣颜色：红/黄</p>-->
+
+                <!--<p class="number-p">参赛次数：9次</p>-->
+
+                <!--<div class="year">-->
+                    <!--<p>1964、1980、1984、1988、1996、2000、2004、2008、2012</p>-->
+                <!--</div>-->
+                <!--<p class="number-p">夺冠次数：3次</p>-->
+
+                <!--<div class="win">-->
+                    <!--<p>1964、2008、2012</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="like-div">-->
+                <!--<img src="images/like.png" class="like" onclick="_like()">-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="hidden" id="hid" onclick="_hide()">
+        <img src="images/logo.png" class="logo-img">
+        <img src="images/wait.png" class="hid-show-img">
+    </div>
+
+    <div id="background" class="backgroundSet">
+        <!--<div id="logo" class="logoSet">-->
+        <img class="logoSet" src="images/logo.png">
+        <!--</div>-->
+        <p class="p-title">活动详情</p>
+        <div class="inner-div1">
+            <p class="text-context">
+                活动主题:携好友猜冠军,火热玩转欧洲杯<br>
+                活动截止:7月10日<br>
+                参与方式:选择自己心中的冠军队伍,分享选择在朋友的帮助下获得额外的选择机会<br>
+                <br>
+                活动奖励:<br>
+                <br>
+                老会员<br>
+                1.猜对冠军即有机会抽奖获得价值3000元的超值大礼(京东购物卡/韩国人气演唱会大礼包)<br>
+                <br>
+                2.每推荐一名新会员成功加入我们即可选择价值1500元的四重好礼(京东购物卡/韩国演唱会现场门票/苹果系列产品/课程兑换)<br>
+                <br>
+                新会员<br>
+                留下名单后即可参与猜冠军活动,猜对即有机会抽奖获得价值3000元超值大礼(京东购物卡/韩国超人气演唱会大礼包)<br>
+            </p>
+        </div>
+        <button class="okButton" onclick="ok()">
+            <img src="images/ok.png" class="image">
+        </button>
+    </div>
+</div>
+
+<script type="application/javascript">
+    function _question() {
+//        alert('questioned');
+        document.getElementById('background').style.display = 'block';
+    }
+
+    function _hide() {
+        document.getElementById('hid').style.display = 'none';
+    }
+
+    function ok(){
+        document.getElementById('background').style.display = 'none';
+    }
+
+    function _like() {
+        alert('liked');
+    }
+</script>
+</body>
+</html>
